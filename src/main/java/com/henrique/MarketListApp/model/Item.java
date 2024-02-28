@@ -13,4 +13,6 @@ public class Item {
     private String name;
     @Column
     private Double price;
+    @Column
+    private Double category;
 }
