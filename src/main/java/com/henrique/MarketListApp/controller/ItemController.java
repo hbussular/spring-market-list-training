@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -17,6 +18,12 @@ public class ItemController {
     @GetMapping
     public List<Item> getItems() {
         return itemRepository.findAll();
+    }
+
+    @GetMapping("/{itemId}")
+    public Item getItemById(@PathVariable Long itemId) {
+        return itemRepository.findById(itemId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Item id not found."));
     }
 
     @PostMapping
