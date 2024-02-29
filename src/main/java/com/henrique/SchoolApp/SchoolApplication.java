@@ -1,13 +1,13 @@
-package com.henrique.MarketListApp;
+package com.henrique.SchoolApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MarketListAppApplication {
+public class SchoolApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MarketListAppApplication.class, args);
+		SpringApplication.run(SchoolApplication.class, args);
 	}
 
 }
