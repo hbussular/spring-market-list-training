@@ -15,11 +15,16 @@ import java.util.stream.Collectors;
 public class StudentDto {
 
     private Long id;
+
     private String username;
+
+
     private String email;
     private String name;
     private String surname;
     private Integer age;
+
+    private String cpf;
 
     public StudentDto(Student student) {
         this.id = student.getId();
