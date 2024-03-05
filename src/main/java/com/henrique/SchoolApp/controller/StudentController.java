@@ -3,6 +3,7 @@ package com.henrique.SchoolApp.controller;
 import com.henrique.SchoolApp.dto.StudentDto;
 import com.henrique.SchoolApp.model.Student;
 import com.henrique.SchoolApp.repository.StudentRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class StudentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Student add(@RequestBody Student student) {
+    public Student add(@Valid @RequestBody Student student) {
         return studentRepository.save(student);
     }
 
