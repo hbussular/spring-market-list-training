@@ -1,5 +1,6 @@
 package com.henrique.SchoolApp.dto;
 
+import com.henrique.SchoolApp.model.Course;
 import com.henrique.SchoolApp.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class StudentDto {
     private Integer age;
 
     private String cpf;
+    private Course courses;
 
     public StudentDto(Student student) {
         this.id = student.getId();
@@ -33,6 +35,8 @@ public class StudentDto {
         this.name = student.getName();
         this.surname = student.getSurname();
         this.age = student.getAge();
+        this.cpf = student.getCpf();
+        this.courses = student.getCourse();
     }
 
     public static List<StudentDto> convert(List<Student> student) {
