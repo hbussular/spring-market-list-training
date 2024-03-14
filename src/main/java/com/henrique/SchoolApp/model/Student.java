@@ -35,4 +35,8 @@ public class Student {
 
     @Column @NotNull @NotEmpty @CPF
     private String cpf;
+
+    @ManyToOne
+    private Course course;
+
 }
