@@ -36,6 +36,7 @@ public class StudentDto {
         this.surname = student.getSurname();
         this.age = student.getAge();
         this.courses = student.getCourse();
+        this.cpf = student.getCpf();
     }
 
     public static List<StudentDto> convert(List<Student> student) {
