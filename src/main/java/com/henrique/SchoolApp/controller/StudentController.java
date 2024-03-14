@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/student")
@@ -24,10 +25,20 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}")
-    public Student getStudentById(@PathVariable Long studentId) {
-        return studentRepository.findById(studentId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Student id not found."));
+    public ResponseEntity<StudentDto> searchById(@PathVariable Long studentId) {
+        Optional<Student> student = studentRepository.findById(studentId);
+        if (student.isPresent()) {
+            return ResponseEntity.ok(new StudentDto(student.get()));
+        }
+        return ResponseEntity.notFound().build();
     }
+
+
+//    @GetMapping("/{studentId}")
+//    public Student getStudentById(@PathVariable Long studentId) {
+//        return studentRepository.findById(studentId)
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Student id not found."));
+//    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
