@@ -25,12 +25,4 @@ public class Course {
     private LocalDate endDate;
     @Column
     private Long grade;
-
-    public Course(Course course) {
-        this.id = id;
-        this.courseName = courseName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.grade = grade;
-    }
 }
