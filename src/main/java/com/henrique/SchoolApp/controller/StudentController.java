@@ -5,6 +5,9 @@ import com.henrique.SchoolApp.model.Student;
 import com.henrique.SchoolApp.repository.StudentRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +22,11 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
     @GetMapping
-    public List<StudentDto> getStudents() {
-        List<Student> students = studentRepository.findAll();
+    public Page<StudentDto> getStudents(@RequestParam(required = false) String studentId,
+                                        @RequestParam int page,
+                                        @RequestParam int quantity) {
+        Pageable pagination = PageRequest.of(page, quantity);
+        Page<Student> students = studentRepository.findAll(pagination);
         return StudentDto.convert(students);
     }
 
