@@ -1,0 +1,9 @@
+INSERT INTO COURSE(course_name, start_date, end_date, grade) VALUES('Spring Boot', '2021-02-02', '2021-02-02', 10);
+INSERT INTO COURSE(course_name, start_date, end_date, grade) VALUES('Java', '2021-02-02', '2021-02-02', 10);
+INSERT INTO COURSE(course_name, start_date, end_date, grade) VALUES('JPA', '2021-02-02', '2021-02-02', 10);
+INSERT INTO COURSE(course_name, start_date, end_date, grade) VALUES('QA', '2021-02-02', '2021-02-02', 10);
+
+INSERT INTO STUDENT(username, password, email, name, surname, age, cpf, course_id) VALUES('Aluno1', '1234', 'aluno@email.com','gabriel', 'silva', 21,  '920.008.430-34', 1);
+INSERT INTO STUDENT(username, password, email, name, surname, age, cpf, course_id) VALUES('Aluno2', '1234', 'aluno2@email.com','Bruno', 'Padua', 39,  '920.008.430-34', 2);
+INSERT INTO STUDENT(username, password, email, name, surname, age, cpf, course_id) VALUES('Aluno3', '1234', 'aluno3@email.com','Jackson', 'Faria', 37,  '920.008.430-34', 3);
+INSERT INTO STUDENT(username, password, email, name, surname, age, cpf, course_id) VALUES('Aluno4', '1234', 'aluno4@email.com','Icaro', 'Guedes', 85,  '920.008.430-34', 4);
