@@ -5,6 +5,7 @@ import com.henrique.SchoolApp.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +40,10 @@ public class StudentDto {
         this.cpf = student.getCpf();
     }
 
-    public static List<StudentDto> convert(List<Student> student) {
-        return student.stream().map(StudentDto::new).collect(Collectors.toList());
+//    public static List<StudentDto> convert(List<Student> student) {
+//        return student.stream().map(StudentDto::new).collect(Collectors.toList());
+//    }
+    public static Page<StudentDto> convert(Page<Student> student) {
+        return student.map(StudentDto::new); //Page already has stream inside of it
     }
 }
