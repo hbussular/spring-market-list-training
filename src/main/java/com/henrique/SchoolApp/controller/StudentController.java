@@ -5,6 +5,7 @@ import com.henrique.SchoolApp.model.Student;
 import com.henrique.SchoolApp.repository.StudentRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,7 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
     @GetMapping
-    @Cacheable(value = "getStudents")
+    @Cacheable(value = "getStudents", sync = false)
     public Page<StudentDto> getStudents(@RequestParam(required = false) String studentId, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pagination ) {
         Page<Student> students = studentRepository.findAll(pagination);
         return StudentDto.convert(students);
@@ -49,11 +50,13 @@ public class StudentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @CacheEvict(value = "getStudents", allEntries = true)
     public Student add(@Valid @RequestBody Student student) {
         return studentRepository.save(student);
     }
 
     @PutMapping("/{studentId}")
+    @CacheEvict(value = "getStudents", allEntries = true)
     public ResponseEntity<Student> update(@PathVariable Long studentId, @RequestBody Student student) {
 
         if(!studentRepository.existsById(studentId)) {
@@ -66,6 +69,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{studentId}")
+    @CacheEvict(value = "getStudents", allEntries = true)
         public ResponseEntity<Void> delete(@PathVariable Long studentId) {
 
             if(!studentRepository.existsById(studentId)) {
