@@ -5,6 +5,7 @@ import com.henrique.SchoolApp.model.Student;
 import com.henrique.SchoolApp.repository.StudentRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,7 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
     @GetMapping
+    @Cacheable(value = "getStudents")
     public Page<StudentDto> getStudents(@RequestParam(required = false) String studentId, @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pagination ) {
         Page<Student> students = studentRepository.findAll(pagination);
         return StudentDto.convert(students);
