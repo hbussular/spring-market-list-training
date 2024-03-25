@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -23,5 +25,9 @@ public class CourseDto {
         this.startDate = course.getStartDate();
         this.endDate = course.getEndDate();
         this.grade = course.getGrade();
+    }
+
+    public static List<CourseDto> convert(List<Course> course) {
+        return course.stream().map(CourseDto::new).collect(Collectors.toList());
     }
 }
