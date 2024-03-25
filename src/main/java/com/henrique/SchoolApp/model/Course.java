@@ -19,7 +19,7 @@ public class Course {
     private Long id;
     @Column @NotEmpty @NotNull
     private String courseName;
-    @Column @NotEmpty @NotNull
+    @Column @NotNull
     private LocalDate startDate;
     @Column
     private LocalDate endDate;
